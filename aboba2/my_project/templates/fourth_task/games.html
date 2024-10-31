@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список игр</title>
+</head>
+<body>
+    <h1>Список игр</h1>
+    <ul>
+        {% for game in games %}
+            <li>
+                {{ game.name }} | {{ game.description }}. Стоимость: {{ game.price }} 
+                <button onclick="location.href='{% url 'add_to_cart' game.name %}'">Добавить в корзину</button>
+            </li>
+        {% empty %}
+            <li>Нет доступных игр.</li>
+        {% endfor %}
+    </ul>
+
+    <footer>
+        <p><a href="/">Вернуться на главную страницу</a></p>
+    </footer>
+</body>
+</html>

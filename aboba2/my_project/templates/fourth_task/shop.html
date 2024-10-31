@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин игр</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                {% block menu %}
+                <li><a href="{% url 'register' %}">Регистрация</a></li> 
+                <li><a href="/">Главная страница</a></li>
+                <li><a href="/shop/">Магазин</a></li>
+                <li><a href="/cart/">Корзина</a></li>
+                {% endblock %}
+            </ul>
+        </nav>
+    </header>
+    <h1>Список игр</h1>
+    {% for game in games %}
+        <div>
+            
+            <p>{{ game.name }} | {{ game.description }}. Стоимость: {{ game.price }}.</p>
+            <button>Добавить в корзину</button>
+        </div>
+    {% empty %}
+        <p>Нет доступных игр.</p>
+    {% endfor %}
+</body>
+</html>
