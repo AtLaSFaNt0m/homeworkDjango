@@ -1,0 +1,20 @@
+{% extends "fourth_task/menu.html" %}
+
+{% block pagename %}
+Корзина
+{% endblock %}
+
+{% block content %}
+<h2>Ваша корзина:</h2>
+{% if cart %}
+    <ul>
+        {% for item in cart %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+    <!-- Кнопка "Купить" в виде пустышки -->
+    <button type="button" disabled style="background-color: grey; cursor: not-allowed;">Купить</button>
+{% else %}
+    <p>Ваша корзина пуста.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список игр</title>
+</head>
+<body>
+    <h1>Список игр</h1>
+    <ul>
+        {% for game in games %}
+            <li>
+                <strong>{{ game.name }}</strong> | {{ game.description }} | Стоимость: {{ game.price }}
+                {% if game.publisher %}
+                    | Издатель: {{ game.publisher.name }} ({{ game.publisher.country }})
+                {% endif %}
+                {% if game.developer %}
+                    | Разработчик: {{ game.developer.name }} | Год основания: {{ game.developer.founded_year }}
+                {% endif %}
+                <button onclick="location.href='{% url 'add_to_cart' game.name %}'">Добавить в корзину</button>
+            </li>
+        {% empty %}
+            <li>Нет доступных игр.</li>
+        {% endfor %}
+    </ul>
+
+    <footer>
+        <p><a href="/">Вернуться на главную страницу</a></p>
+    </footer>
+</body>
+</html>
